@@ -29,5 +29,9 @@ module.exports = {
   sessionRedis: {
     enable: true,
     package: 'egg-session-redis'
+  },
+  sequelize: {
+    enable: true,
+    package: 'egg-sequelize',
   }
 };

@@ -1,18 +1,21 @@
 'use strict';
 
-const Service = require('egg').Service;
+// const Service = require('egg').Service;
+const BaseService = require('./index.js')
 const md5 = require('md5');
 // 1、uuid.v1(); -->基于时间戳生成  （time-based）
 // 2、uuid.v4(); -->随机生成  (random)
 const uuid4 = require('uuid');
 
-class UserService extends Service {
+class UserService extends BaseService {
   async create() {
-    const { ctx } = this;
+    const sql = "SELECT * FROM admin"
+    const data = await this.app.model.query(sql)
+    return data
   }
   async findUser() {
-    const { ctx, app } = this;
-    const data = await app.mysql.select('user'); // SELECT * from `user`
+    // const data = await app.mysql.select('users'); // SELECT * from `user`
+    const data = await this._findAll('User')
     return data;
   }
   async getAdminLogin(account, password) {

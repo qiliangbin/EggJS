@@ -5,11 +5,13 @@ const ms = require('ms');
 class UserController extends Controller {
   async create() {
     const { ctx } = this;
-    ctx.body = 'hi, egg create';
+    const data = await ctx.service.user.create()
+    this.success(200, data);
   }
   async getUserList() {
     const { ctx } = this;
     const data = await ctx.service.user.findUser();
+    // const data = await ctx.service.user.findUser()
     this.success(200, data);
   }
   async login() {

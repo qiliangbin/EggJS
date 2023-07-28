@@ -6,7 +6,7 @@
  */
 module.exports = (options, app) => {
   return async function auth(ctx, next) {
-    const ignorePath = ['/user/login', '/user/register', '/user/logout']
+    const ignorePath = ['/user/login', '/user/register', '/user/logout', '/user/list']
     const isWhite = ignorePath.some(v => ctx.path.indexOf(v) > -1)
     if(isWhite) {
       await next()
