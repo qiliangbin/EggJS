@@ -18,6 +18,17 @@ class UserService extends BaseService {
     const data = await this._findAll('User')
     return data;
   }
+  async findAdmin() {
+    const data = await this.app.model.Admin.findAll({
+      include: [
+        {
+          model: this.app.model.User,
+          attributes: ['id','name']
+        }
+      ]
+    })
+    return data
+  }
   async getAdminLogin(account, password) {
     return await this.app.mysql.select('admin', {
       where: {
